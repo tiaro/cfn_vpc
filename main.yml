@@ -1,0 +1,24 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "new VPC"
+
+Parameters:
+  Name:
+    Description: Name of the VPC
+    Type: String
+  VpcCidr:
+    Description: VPC CIDR /16
+    Type: String
+    Default: 10.0.0.0/16
+
+Resources:
+  Vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCidr
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
